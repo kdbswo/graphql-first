@@ -1,6 +1,18 @@
 import { ApolloServer, gql } from "apollo-server";
 import { url } from "inspector";
 
+
+const tweets = [
+  {
+    id: "1",
+    text: "first one",
+  },
+  {
+    id: "2",
+    text: "second one",
+  },
+];
+
 const typeDefs = gql`
   type User {
     id: ID!
@@ -11,7 +23,7 @@ const typeDefs = gql`
   type Tweet {
     id: ID!
     text: String!
-    author: User!
+    author: User
   }
   type Query {
     allTweets: [Tweet!]!
@@ -25,9 +37,11 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    tweet() {
-      console.log("I'm called");
-      return null;
+    allTweets() {
+      return tweets;
+    },
+    tweet(root, { id }) {
+      return tweets.find((tweet) => tweet.id === id);
     },
   },
 };
