@@ -23,6 +23,14 @@ const typeDefs = gql`
   }
 `;
 
+const resolvers = {
+  Query: {
+    tweet() {
+      return null;
+    },
+  },
+};
+
 const server = new ApolloServer({ typeDefs });
 
 server.listen().then(({ url }) => {
