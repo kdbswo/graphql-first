@@ -64,6 +64,8 @@ const resolvers = {
   },
   Mutation: {
     postTweet(_, { text, userId }) {
+      const tweet = tweets.find((tweet) => tweet.userId === userId);
+      if (!tweet) return false;
       const newTweet = {
         id: tweets.length + 1,
         text,
