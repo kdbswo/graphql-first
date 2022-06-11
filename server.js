@@ -31,8 +31,14 @@ const typeDefs = gql`
     id: ID!
     firstName: String!
     lastName: String!
+    """
+    Is the sum of firstName + lastName as a string
+    """
     fullName: String!
   }
+  """
+  Tweet obejct represents a resource for a tweet
+  """
   type Tweet {
     id: ID!
     text: String!
@@ -45,6 +51,9 @@ const typeDefs = gql`
   }
   type Mutation {
     postTweet(text: String!, userId: ID!): Tweet!
+    """
+    Delete a Tweet if found, else returns false
+    """
     deleteTweet(id: ID!): Boolean!
   }
 `;
